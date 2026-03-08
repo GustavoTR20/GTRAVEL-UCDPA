@@ -51,3 +51,38 @@
 .search-btn:hover{
   background:#818181;
 }
+
+.testimonials-kicker{
+  font-size:.82rem;
+  letter-spacing:.16em;
+  font-weight:500;
+  color:var(--accent-soft)!important;
+  text-transform:uppercase;
+}
+
+.testimonial-card{
+  background:#fff;
+  border:1px solid rgba(17,17,17,.06);
+  border-radius:22px;
+  padding:30px;
+}
+
+.dot{
+  width:10px;
+  height:10px;
+  border-radius:999px;
+  border:1px solid rgba(17,17,17,.25);
+  background:transparent;
+}
+
+.dot.is-active{
+  background:rgba(17,17,17,.7);
+}
+
+.arrow-btn{
+  width:40px;
+  height:40px;
+  border-radius:999px;
+  border:1px solid rgba(17,17,17,.1);
+  background:#fff;
+}
