@@ -1,5 +1,139 @@
+:root {
+  --font-serif: "DM Serif Display", serif;
+  --font-sans: "Inter", sans-serif;
+
+  --bg: #f8f8f6;
+  --surface: #ffffff;
+  --text: #111111;
+  --muted: #6f7682;
+  --border: rgba(17,17,17,0.08);
+
+  --accent-soft: #c96b6b;
+
+  --button-gray: #9a9a9a;
+  --button-gray-hover: #818181;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--text);
+  background: var(--bg);
+  margin: 0;
+}
+
+h1,h2,h3,h4,h5,h6 {
+  font-family: var(--font-serif);
+}
+
+p,a,button,input,select,span,li,label {
+  font-family: var(--font-sans);
+}
+
+a {
+  text-decoration: none;
+}
+
+
+.navbar{
+  background: rgba(255,255,255,.9)!important;
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(17,17,17,.05);
+}
+
+.nav-logo-lg{
+  height:48px;
+}
+
+.nav-link-lite{
+  font-size:.96rem;
+  color:rgba(17,17,17,.72)!important;
+}
+
+.nav-link-lite:hover,
+.nav-link-lite.active{
+  color:#111!important;
+}
+
+
+.hero-v3{
+  min-height:100vh;
+  background:var(--bg);
+}
+
+.hero-v3-bg{
+  background-image:url("../images/coqueiro.jpg");
+  background-size:cover;
+  background-position:center;
+}
+
+.hero-v3-overlay{
+  background:rgba(255,255,255,.55);
+}
+
+.hero-layout{
+  min-height:85vh;
+  display:flex;
+  align-items:center;
+}
+
+.hero-content{
+  max-width:700px;
+  margin-top:55px;
+}
+
+.hero-title{
+  font-size:clamp(3.5rem,6vw,5rem);
+  line-height:1.05;
+  margin-bottom:18px;
+}
+
+.hero-description{
+  width:560px;
+  max-width:560px;
+  min-width:560px;
+  margin-top:20px;
+  margin-bottom:32px;
+  font-size:1.05rem;
+  line-height:1.7;
+  color:rgba(17,17,17,.65);
+}
+
+.hero-btn{
+  padding:14px 32px;
+}
+
+
+section{
+  padding:6rem 0;
+}
+
+main.container{
+  padding-top:4rem!important;
+}
+
+
+#topDestinations .text-uppercase.small{
+  font-size:.75rem;
+  letter-spacing:.22em;
+  font-weight:500;
+  color:var(--accent-soft)!important;
+}
+
+#topDestinations h2{
+  font-size:clamp(2.3rem,3vw,3rem);
+  font-weight:300;
+}
+
 .destination-card{
-  border:1px solid rgba(17,17,17,0.08);
+  border:1px solid var(--border)!important;
   border-radius:22px;
   overflow:hidden;
   transition:transform .25s ease;
@@ -21,7 +155,11 @@
 
 .destination-card p{
   font-size:.95rem;
-  color:#6f7682;
+  color:var(--muted);
+}
+
+#landingPage h2{
+  font-size:clamp(2rem,3vw,2.5rem);
 }
 
 .search-pill{
@@ -29,7 +167,7 @@
   align-items:center;
   gap:18px;
   background:#fff;
-  border:1px solid rgba(17,17,17,0.08);
+  border:1px solid var(--border);
   border-radius:999px;
   padding:12px 18px;
 }
@@ -43,13 +181,13 @@
 .search-btn{
   border-radius:999px;
   padding:14px 32px;
-  background:#9a9a9a;
+  background:var(--button-gray);
   border:none;
   color:#fff;
 }
 
 .search-btn:hover{
-  background:#818181;
+  background:var(--button-gray-hover);
 }
 
 .testimonials-kicker{
@@ -72,7 +210,6 @@
   height:10px;
   border-radius:999px;
   border:1px solid rgba(17,17,17,.25);
-  background:transparent;
 }
 
 .dot.is-active{
@@ -85,6 +222,32 @@
   border-radius:999px;
   border:1px solid rgba(17,17,17,.1);
   background:#fff;
+}
+
+.results-title{
+  font-size:clamp(2.4rem,4vw,3.8rem);
+}
+
+.results-city-title{
+  font-size: clamp(2.2rem,4vw,3.2rem);
+  font-weight:400;
+}
+
+.results-city-meta{
+  font-size:1rem;
+  color:var(--muted);
+}
+
+.results-v2 .text-uppercase.small.text-muted{
+  font-size:.82rem;
+  letter-spacing:.18em!important;
+  font-weight:500;
+  color:var(--accent-soft)!important;
+}
+
+.results-v2 .card{
+  border:1px solid var(--border)!important;
+  border-radius:24px!important;
 }
 
 .forecast-grid{
@@ -123,6 +286,15 @@
   color:var(--muted);
 }
 
+.site-footer{
+  margin-top:80px;
+  padding:30px 0;
+  border-top:1px solid rgba(17,17,17,.08);
+  text-align:center;
+  font-size:.9rem;
+  color:var(--muted);
+}
+
 @media (max-width:991px){
 
   .forecast-grid{
@@ -137,34 +309,19 @@
 
 }
 
-.results-city-meta{
-  font-size:0.95rem;
-  color:var(--muted);
-  margin-top:4px;
-}
+@media (max-width:767px){
 
-.results-title{
-  font-weight:400;
-  letter-spacing:-0.01em;
-}
+  section{
+    padding:4rem 0;
+  }
 
-.results-v2 .card{
-  transition:all .2s ease;
-}
+  .search-pill{
+    flex-direction:column;
+    border-radius:28px;
+  }
 
-.results-v2 .card:hover{
-  transform:translateY(-2px);
-}
+  .search-btn{
+    width:100%;
+  }
 
-.site-footer{
-  margin-top:80px;
-  padding:30px 0;
-  border-top:1px solid rgba(17,17,17,.08);
-  text-align:center;
-  font-size:.9rem;
-  color:var(--muted);
-}
-
-.site-footer p{
-  margin:0;
 }
