@@ -123,3 +123,23 @@ function renderRecommendations(dest, data) {
 
   addItem(recommendationsList, `Local tip: explore ${dest.name} according to the vibe of the city.`);
 }
+
+function renderTips(dest, data) {
+  const tipsList = $id("tipsList");
+  if (!tipsList) return;
+
+  const rain = data.daily.precipitation_sum[0] ?? 0;
+  const isRainy = rain >= 1;
+  const cityPlaces = placesByCity[dest.id];
+  const list = isRainy ? cityPlaces?.rainy : cityPlaces?.dry;
+
+  clearList(tipsList);
+
+  addItem(tipsList, "Check the forecast 24h before your trip to adjust your packing.");
+  addItem(tipsList, isRainy ? "Wear shoes that handle wet floors." : "Start early to enjoy the day with fewer crowds.");
+
+  if (Array.isArray(list)) {
+    addItem(tipsList, isRainy ? "Good places for a rainy day:" : "Good places for a dry day:");
+    list.slice(0, 3).forEach((place) => addItem(tipsList, place));
+  }
+}
