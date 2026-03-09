@@ -143,3 +143,43 @@ function renderTips(dest, data) {
     list.slice(0, 3).forEach((place) => addItem(tipsList, place));
   }
 }
+
+async function runResultsPage() {
+
+  const dest = getSelectedDestinationFromStorage();
+  if (!dest) return;
+
+  try {
+
+    if (abortController) abortController.abort();
+    abortController = new AbortController();
+
+    const data = await getWeather(dest);
+
+    renderWeather(dest, data);
+    renderRecommendations(dest, data);
+    renderTips(dest, data);
+
+  } catch (err) {
+
+    if (err?.name !== "AbortError") {
+      console.error(err);
+    }
+
+  }
+
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+
+  runResultsPage();
+
+  const backBtn = $id("backBtn");
+
+  if (backBtn) {
+    backBtn.addEventListener("click", () => {
+      window.location.href = "index.html#landingPage";
+    });
+  }
+
+});
