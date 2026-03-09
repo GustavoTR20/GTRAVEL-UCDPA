@@ -136,3 +136,35 @@
   }
 
 }
+
+.results-city-meta{
+  font-size:0.95rem;
+  color:var(--muted);
+  margin-top:4px;
+}
+
+.results-title{
+  font-weight:400;
+  letter-spacing:-0.01em;
+}
+
+.results-v2 .card{
+  transition:all .2s ease;
+}
+
+.results-v2 .card:hover{
+  transform:translateY(-2px);
+}
+
+.site-footer{
+  margin-top:80px;
+  padding:30px 0;
+  border-top:1px solid rgba(17,17,17,.08);
+  text-align:center;
+  font-size:.9rem;
+  color:var(--muted);
+}
+
+.site-footer p{
+  margin:0;
+}
