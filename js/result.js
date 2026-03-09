@@ -74,3 +74,32 @@ function renderWeather(dest, data) {
   titleEl.textContent = dest.name;
   weatherSummary.textContent = `${c(tMin[0])} / ${c(tMax[0])} • Rain ${mm(rain[0] ?? 0)}`;
 }
+
+function renderWeather(dest, data) {
+  const weatherSummary = $id("weatherSummary");
+  const forecastGrid = $id("forecastGrid");
+  const titleEl = $id("resultCityTitle");
+
+  if (!weatherSummary || !forecastGrid || !titleEl) return;
+
+  const days = data.daily.time;
+  const tMax = data.daily.temperature_2m_max;
+  const tMin = data.daily.temperature_2m_min;
+  const rain = data.daily.precipitation_sum;
+
+  titleEl.textContent = dest.name;
+  weatherSummary.textContent = `${c(tMin[0])} / ${c(tMax[0])} • Rain ${mm(rain[0] ?? 0)}`;
+
+  clearList(forecastGrid);
+
+  for (let i = 0; i < days.length; i++) {
+    const card = document.createElement("div");
+    card.className = "forecast-day-card";
+    card.innerHTML = `
+      <div class="forecast-day-name">${formatDayLabel(days[i])}</div>
+      <div class="forecast-day-temp">${c(tMin[i])} / ${c(tMax[i])}</div>
+      <div class="forecast-day-rain">${mm(rain[i] ?? 0)}</div>
+    `;
+    forecastGrid.appendChild(card);
+  }
+}
