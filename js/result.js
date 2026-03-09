@@ -59,3 +59,18 @@ async function getWeather(dest) {
 
   return data;
 }
+
+function renderWeather(dest, data) {
+  const weatherSummary = $id("weatherSummary");
+  const forecastGrid = $id("forecastGrid");
+  const titleEl = $id("resultCityTitle");
+
+  if (!weatherSummary || !forecastGrid || !titleEl) return;
+
+  const tMax = data.daily.temperature_2m_max;
+  const tMin = data.daily.temperature_2m_min;
+  const rain = data.daily.precipitation_sum;
+
+  titleEl.textContent = dest.name;
+  weatherSummary.textContent = `${c(tMin[0])} / ${c(tMax[0])} • Rain ${mm(rain[0] ?? 0)}`;
+}
