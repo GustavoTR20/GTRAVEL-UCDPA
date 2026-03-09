@@ -67,21 +67,6 @@ function renderWeather(dest, data) {
 
   if (!weatherSummary || !forecastGrid || !titleEl) return;
 
-  const tMax = data.daily.temperature_2m_max;
-  const tMin = data.daily.temperature_2m_min;
-  const rain = data.daily.precipitation_sum;
-
-  titleEl.textContent = dest.name;
-  weatherSummary.textContent = `${c(tMin[0])} / ${c(tMax[0])} • Rain ${mm(rain[0] ?? 0)}`;
-}
-
-function renderWeather(dest, data) {
-  const weatherSummary = $id("weatherSummary");
-  const forecastGrid = $id("forecastGrid");
-  const titleEl = $id("resultCityTitle");
-
-  if (!weatherSummary || !forecastGrid || !titleEl) return;
-
   const days = data.daily.time;
   const tMax = data.daily.temperature_2m_max;
   const tMin = data.daily.temperature_2m_min;
@@ -145,12 +130,10 @@ function renderTips(dest, data) {
 }
 
 async function runResultsPage() {
-
   const dest = getSelectedDestinationFromStorage();
   if (!dest) return;
 
   try {
-
     if (abortController) abortController.abort();
     abortController = new AbortController();
 
@@ -159,27 +142,18 @@ async function runResultsPage() {
     renderWeather(dest, data);
     renderRecommendations(dest, data);
     renderTips(dest, data);
-
   } catch (err) {
-
-    if (err?.name !== "AbortError") {
-      console.error(err);
-    }
-
+    if (err?.name !== "AbortError") console.error(err);
   }
-
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-
   runResultsPage();
 
   const backBtn = $id("backBtn");
-
   if (backBtn) {
     backBtn.addEventListener("click", () => {
       window.location.href = "index.html#landingPage";
     });
   }
-
 });
