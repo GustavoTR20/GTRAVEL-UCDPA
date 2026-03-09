@@ -103,3 +103,23 @@ function renderWeather(dest, data) {
     forecastGrid.appendChild(card);
   }
 }
+
+function renderRecommendations(dest, data) {
+  const recommendationsList = $id("recommendationsList");
+  if (!recommendationsList) return;
+
+  const max = data.daily.temperature_2m_max[0];
+  const rain = data.daily.precipitation_sum[0] ?? 0;
+
+  clearList(recommendationsList);
+
+  if (rain >= 5) addItem(recommendationsList, "Heavy rain: focus on indoor spots.");
+  else if (rain >= 1) addItem(recommendationsList, "Possible rain: bring an umbrella and have a backup plan.");
+  else addItem(recommendationsList, "Dry weather: great for outdoor attractions and walking tours.");
+
+  if (max >= 28) addItem(recommendationsList, "Hot day: sunscreen + water, avoid peak sun hours.");
+  else if (max <= 10) addItem(recommendationsList, "Cold day: wear layers and plan indoor breaks.");
+  else addItem(recommendationsList, "Mild weather: perfect for exploring on foot.");
+
+  addItem(recommendationsList, `Local tip: explore ${dest.name} according to the vibe of the city.`);
+}
