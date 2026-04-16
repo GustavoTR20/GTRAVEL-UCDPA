@@ -1,14 +1,21 @@
+// This key is used to store the destination selected by the user in localStorage, allowing the results page to display the same destination
 const STORAGE_KEY = "selectedDestinationId";
+
+// API link where weather requests are created by providing the destination coordinates and time zone
 const apiBase = "https://api.open-meteo.com/v1/forecast";
 
+// An instance of the AbortController used to cancel any previous weather requests, and also to avoid overlapping API calls
 let abortController = null;
 
+// A small helper function for retrieving DOM elements by ID, used to maintain access to the DOM 
 const $id = (id) => document.getElementById(id);
 
+// Used before re-rendering forecast cards or recommendation lists, clearing all existing content 
 function clearList(el) {
   if (el) el.innerHTML = "";
 }
 
+// Adds a new item to a specific unordered list element, allowing the list’s rendering to be reused in recommendations and tips
 function addItem(ul, text) {
   if (!ul) return;
   const li = document.createElement("li");
@@ -17,28 +24,35 @@ function addItem(ul, text) {
   ul.appendChild(li);
 }
 
+// Formats a numeric temperature value for display
 function c(n) {
   return `${Math.round(n)}°C`;
 }
 
+// Formats precipitation values in millimetres for UI display
 function mm(n) {
   return `${Number(n).toFixed(1)} mm`;
 }
 
+// Finds a destination object in the shared destinations dataset using its ID, and returns null if the ID does not match any known destination
 function findDestinationById(id) {
   return destinations.find((d) => d.id === id) || null;
 }
 
+//Retrieves the selected destination id from localStorage and converts it into the full destination object
 function getSelectedDestinationFromStorage() {
   const id = localStorage.getItem(STORAGE_KEY);
   return id ? findDestinationById(id) : null;
 }
 
+// Converts a date string from the API into a short weekday label.
 function formatDayLabel(dateString) {
   const date = new Date(dateString);
   return date.toLocaleDateString("en-US", { weekday: "short" });
 }
 
+// Gets weather data from the Open-Meteo API for the selected destination 
+// It also returns an error if the request fails or if the API response is incomplete
 async function getWeather(dest) {
   const params = new URLSearchParams({
     latitude: String(dest.lat),
@@ -60,6 +74,7 @@ async function getWeather(dest) {
   return data;
 }
 
+// Displays the weather summary and daily forecast cards on the results page, using the destination name, a summary of the current day and the forecast for the other days
 function renderWeather(dest, data) {
   const weatherSummary = $id("weatherSummary");
   const forecastGrid = $id("forecastGrid");
@@ -89,6 +104,8 @@ function renderWeather(dest, data) {
   }
 }
 
+// Generates general travel recommendations based on the first day's forecast.
+// The algorithm takes into account the amount of rainfall to determine whether outdoor plans are suitable the maximum temperature to suggest clothing and planning tips
 function renderRecommendations(dest, data) {
   const recommendationsList = $id("recommendationsList");
   if (!recommendationsList) return;
@@ -109,6 +126,7 @@ function renderRecommendations(dest, data) {
   addItem(recommendationsList, `Local tip: explore ${dest.name} according to the vibe of the city.`);
 }
 
+// The function selects suggestions for indoor or outdoor activities, depending on whether the weather forecast predicts rain for the selected destination
 function renderTips(dest, data) {
   const tipsList = $id("tipsList");
   if (!tipsList) return;
@@ -129,6 +147,8 @@ function renderTips(dest, data) {
   }
 }
 
+// This function retrieves the selected destination from storage, fetches weather data from the API and renders weather, recommendations, and tips
+// It also cancels any previous request before starting a new one.
 async function runResultsPage() {
   const dest = getSelectedDestinationFromStorage();
   if (!dest) return;
@@ -147,6 +167,7 @@ async function runResultsPage() {
   }
 }
 
+// It initializes the results page as soon as the DOM is ready, loading all the dynamic content of the results and also linking the Back button
 document.addEventListener("DOMContentLoaded", () => {
   runResultsPage();
 
