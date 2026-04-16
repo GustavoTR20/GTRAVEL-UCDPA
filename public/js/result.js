@@ -1,3 +1,4 @@
+
 // This key is used to store the destination selected by the user in localStorage, allowing the results page to display the same destination
 const STORAGE_KEY = "selectedDestinationId";
 
