@@ -116,7 +116,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // Stores the selected destination id in localStorage and redirects the user to the results page
       localStorage.setItem(STORAGE_KEY, dest.id);
-      window.location.href = "result.html";
+      window.location.href = "./result";
     });
   }
 });
