@@ -1,9 +1,11 @@
-# GusTrip
+# GTRAVEL
+
+---
 
 ## Description
 
-GusTrip is a travel planning web application developed as an academic project.  
-It allows users to explore destinations, check weather forecasts, and receive travel recommendations based on their selected location.
+GTRAVEL is a web based travel planning app developed as an academic project.  
+It allows users to explore destinations, check weather forecasts and receive travel recommendations based on their chosen location, thereby making their trip easier and providing tips on the main tourist attractions in their chosen city.
 
 ---
 
@@ -15,6 +17,9 @@ It allows users to explore destinations, check weather forecasts, and receive tr
 - Travel recommendations based on destination data  
 - Travel tips and useful information  
 - Responsive design with Bootstrap  
+- Client-side state management using localStorage  
+- Dynamic DOM manipulation with JavaScript
+- Component-based architecture using Astro (Layouts and reusable components)
 
 ---
 
@@ -67,11 +72,23 @@ gustrip-astro/
 
 ---
 
+## GitHub Repository
+
+https://github.com/GustavoTR20/GTRAVEL-UCDPA
+
+---
+
+## Live Website
+The project is deployed using Render and can be accessed at:  
+https://gtravel-ucdpa2.onrender.com
+
+---
+
 ## How to Run Locally
 
 1. Clone the repository:
 ```bash
-git clone <https://github.com/GustavoTR20/GTRAVEL-UCDPA >
+git clone https://github.com/GustavoTR20/GTRAVEL-UCDPA
 ```
 
 2. Navigate to the project folder:
@@ -93,15 +110,3 @@ npm run dev
 ```
 http://localhost:4321
 ```
-
----
-
-## GitHub Repository
-
-<https://github.com/GustavoTR20/GTRAVEL-UCDPA >
-
----
-
-## Live Website
-The project is deployed using GitHub Pages.  
-<PASTE-YOUR-DEPLOY-LINK-HERE>
